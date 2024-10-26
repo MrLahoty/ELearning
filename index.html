@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>eLearning Platform - Home</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        /* Header */
+        header {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header img {
+            width: 90px;
+            height: 90px;
+            position: absolute; /* Position the logo absolutely */
+            left: 20px; /* Move the logo to the left */
+            top: 20px; /* Adjust the top position to align with the header padding */
+        }
+         header img.header-image {
+             width: 10%; /* Make the header image full width */
+             height: auto; /* Keep the aspect ratio */
+             position: relative; /* Ensure the header image does not overlap with the logo */
+            }
+        nav {
+            margin-top: 15px;
+        }
+        nav a {
+            color: rgb(12, 2, 2);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            padding: 8px 16px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #003380;
+            border-radius: 5px;
+        }
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    header {
+        padding: 10px 15px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Logo */
+    header img {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* Header Image */
+    header img.header-image {
+        width: 40%;
+        height: auto;
+    }
+
+    /* Navigation */
+    nav {
+        flex: 1;
+        display: flex;
+        justify-content: space-around; /* Space links evenly */
+        gap: 5px;
+    }
+
+    nav a {
+        font-size: 14px; /* Slightly smaller font */
+        padding: 5px 6px; /* Reduced padding to fit on one line */
+    }
+}
+
+
+        /* Slider */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 1450px;
+            margin: 30px auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+        .slides img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .slide {
+            min-width: 100%;
+            transition: opacity 1s ease;
+            display: none;
+        }
+        .slide.active {
+            opacity: 1;
+            display: block;
+        }
+        .slide:not(.active) {
+            opacity: 0;
+        }
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .control-btn {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .control-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Featured Courses */
+        .courses {
+            padding: 40px 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+        .courses h2 {
+            color: #0047AB;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+        .course-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .course-card {
+            background-color: white;
+            width: 250px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .course-card:hover {
+            transform: translateY(-10px);
+        }
+        .course-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .course-card h3 {
+            color: #ff6600;
+            margin: 15px 0;
+        }
+        .course-card p {
+            color: #666;
+        }
+        .course-card a {
+            display: inline-block;
+            background-color: #ff6600;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .course-card a:hover {
+            background-color: #e65c00;
+        }
+
+        /* Key Activities and Resources */
+        .info-section {
+            padding: 50px 20px;
+            background-color: #f9f9f9;
+        }
+        .info-boxes {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .info-box {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 45%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            min-width: 300px;
+        }
+        .info-box h2 {
+            margin-bottom: 20px;
+            font-size: 26px;
+        }
+        .info-box ul {
+            padding-left: 20px;
+            color: #555;
+            font-size: 18px;
+            line-height: 1.8;
+            list-style-type: disc;
+        }
+
+        /* About Us */
+        .about-us {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        .about-us h2 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .about-us p {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+  /* Home Section Styles */
+#home {
+    background-color: #f9f9f9; /* Light background color */
+    padding: 50px 20px; /* Padding around the section */
+    text-align: center; /* Centered text */
+}
+
+#home h1 {
+    font-size: 2.5em; /* Large title */
+    color: #0047AB; /* Main color */
+}
+
+#home p {
+    font-size: 1.2em; /* Smaller subtitle */
+    color: #333; /* Darker text */
+}
+
+#home a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffcc00; /* Highlight color */
+    color: #0047AB; /* Main text color */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    margin-top: 20px; /* Space above */
+}
+
+/* Features Section Styles */
+.features-section {
+    padding: 50px 20px;
+    background-color: #ffffff; /* White background for features */
+    display: flex; /* Make it a flex container */
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center; /* Center the features */
+}
+
+.features-section h2 {
+    font-size: 2em; /* Title size */
+    text-align: center; /* Center title */
+    color: #0047AB; /* Main color */
+}
+
+.features-section .feature {
+    flex: 1 1 250px; /* Flexible layout for features */
+    margin: 10px; /* Space around features */
+    padding: 20px; /* Space inside features */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+/* Footer */
+footer {
+    background-color: #0047AB;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin-top: 20px; /* Space between footer and the previous section */
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px; /* Reduce the height of the gradient bar */
+  background: linear-gradient(90deg, #ffcc00, #ff6600);
+  animation: gradient-slide 5s infinite linear;
+  z-index: 1;
+}
+
+@keyframes gradient-slide {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+footer .footer-content {
+    display: flex;
+    justify-content: space-between; /* Ensure equal spacing */
+    flex-wrap: wrap; /* Allow wrapping */
+    margin-top: 20px;
+    gap: 20px; /* Space between sections */
+    padding: 0 50px; /* Maintain padding for larger screens */
+}
+
+footer .footer-section {
+    flex: 1 1 200px; /* Make sections flexible */
+    min-width: 150px; /* Prevent too small widths */
+    max-width: 300px; /* Maintain a max width for uniformity */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+footer {
+    width: 100%; /* Ensure footer takes the full width */
+    box-sizing: border-box; /* Include padding/borders in total width */
+}
+footer h3 {
+    color: #ffcc00;
+    margin-bottom: 15px;
+    font-size: 20px;
+    text-transform: uppercase;
+    position: relative;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+footer a:hover {
+    color: #ffcc00;
+    transform: translateX(5px);
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    line-height: 2;
+}
+
+footer ul li:before {
+    content: "•";
+    color: #ffcc00;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+footer p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+footer .footer-bottom {
+    margin-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    padding-top: 15px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+footer .footer-socials {
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+footer .footer-socials a {
+    margin: 0 10px;
+    color: white;
+    transition: transform 0.3s, color 0.3s;
+}
+
+footer .footer-socials a:hover {
+    color: #ff6600;
+    transform: scale(1.3);
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    footer .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 15px; /* Reduced gap for compact spacing */
+        padding: 0 15px; /* Adjust padding for small screens */
+    }
+
+    footer .footer-section {
+        min-width: 100%; /* Allow full width for sections */
+        max-width: none; /* Reset max-width for smaller screens */
+    }
+    
+    footer .footer-bottom {
+        text-align: center;
+    }
+}
+
+        
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+       <img src="Images/Header.png" alt="Header Image" class="header-image">
+       <img src="Images/Logo.png" alt="Logo" class="logo">
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#Course">Courses</a>
+            <a href="#about-us">About</a>
+            <a href="#contact-footer">Contact</a>
+        </nav>
+    </header>
+    <!-- Home Section -->
+    <section id="home" class="hero-section">
+        <h1 class="hero-title">Welcome to Digilearn!</h1>
+        <p class="hero-subtitle">
+          Discover amazing courses and resources to help you learn and grow.
+        </p>
+        <a href="#Course" class="hero-button">Get Started</a>
+      </section>
+
+<section style="padding: 50px 20px; background-color: #ffffff;">
+    <h2 style="font-size: 2em; text-align: center; color: #0047AB;">Our Features</h2>
+    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 20px;">
+        <div style="flex: 1 1 250px; margin: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3>Interactive Learning Modules</h3>
+            <p>Engage with quizzes and simulations for a hands-on experience.</p>
+        </div>
+        <div style="flex: 1 1 250px; margin: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3>Personalized Learning Paths</h3>
+            <p>Get tailored recommendations based on your goals.</p>
+        </div>
+        <div style="flex: 1 1 250px; margin: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3>Expert Instructors</h3>
+            <p>Learn from industry professionals with real-world experience.</p>
+        </div>
+        <div style="flex: 1 1 250px; margin: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3>Community Support</h3>
+            <p>Connect with fellow learners and build a network.</p>
+        </div>
+        <div style="flex: 1 1 250px; margin: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3>Flexible Learning Options</h3>
+            <p>Study at your own pace with mobile-friendly content.</p>
+        </div>
+        <div style="flex: 1 1 250px; margin: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3>Progress Tracking</h3>
+            <p>Track your learning journey and earn badges.</p>
+        </div>
+        <div style="flex: 1 1 250px; margin: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3>Live Webinars</h3>
+            <p>Engage in real-time discussions with instructors.</p>
+        </div>
+        <div style="flex: 1 1 250px; margin: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3>Resource Library</h3>
+            <p>Access eBooks, articles, and video tutorials.</p>
+        </div>
+        <div style="flex: 1 1 250px; margin: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3>Mobile Compatibility</h3>
+            <p>Learn on the go with our mobile-friendly platform.</p>
+        </div>
+        <div style="flex: 1 1 250px; margin: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3>Success Stories</h3>
+            <p>Read how others have achieved their goals.</p>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Slider Section -->
+    <div class="slider">
+        <div class="slides">
+            <div class="slide active">
+                <img src="Images/IMG1.jpeg" alt="Slide 1">
+            </div>
+            <div class="slide">
+                <img src="Images/IMG2.jpeg" alt="Slide 2">
+            </div>
+            <!-- <div class="slide">
+                <img src="https://via.placeholder.com/1200x500?text=Join+Us+Today" alt="Slide 3">
+            </div> -->
+        </div>
+        <div class="slider-controls">
+            <button class="control-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+            <button class="control-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Featured Courses Section -->
+     <section id="Course">
+    <section class="courses">
+        <h2>Our Popular Courses</h2>
+        <div class="course-cards">
+            <div class="course-card">
+                <img src="https://www.webworxtechnology.com/wp-content/uploads/2018/06/web-development.jpg" alt="Web Development">
+                <h3>Web Development</h3>
+                <p> Web development can range from developing a simple single static page of plain text to complex web applications, electronic businesses, and social network services.</p>
+                <a href="#">Enroll Now</a>
+                <p><i class="fas fa-clock" style="color: #ff6600;"></i> 8 weeks</p>
+            </div>
+            <div class="course-card">
+                <img src="https://www.iimtindia.net/Blog/wp-content/uploads/2021/06/Data-Science.jpg" alt="Data Science">
+                <h3>Data Science</h3>
+                <p>Analyze data and make decisions using statistical methods and machine learning.</p>
+                <a href="#">Enroll Now</a>
+                <p><i class="fas fa-clock" style="color: #ff6600;"></i> 10 weeks</p>
+            </div>
+            <div class="course-card">
+                <img src="https://www.analytixlabs.co.in/blog/wp-content/uploads/2020/08/Blog-Banner-7-1-3.jpg" alt="Machine Learning">
+                <h3>Machine Learning</h3>
+                <p>Machine learning is a field of study in artificial intelligence concerned with the development and study of statistical algorithms.</p>
+                <a href="#">Enroll Now</a>
+                <p><i class="fas fa-clock" style="color: #ff6600;"></i> 6 weeks</p>
+            </div>
+            <div class="course-card">
+                <img src="https://i.ytimg.com/vi/6DB7vYXgEoo/maxresdefault.jpg" alt="Robotics">
+                <h3>Robotics</h3>
+                <p>Robotics is the interdisciplinary study and practice of the design, construction, operation, and use of robots.</p>
+                <a href="#">Enroll Now</a>
+                <p><i class="fas fa-clock" style="color: #ff6600;"></i> 6 weeks</p>
+            </div>
+            <div class="course-card">
+                <img src="https://www.spec-india.com/wp-content/uploads/2020/06/Full_Stack.png" alt="Full Stack Development">
+                <h3>Full Stack Development</h3>
+                <p>Full Stack web developers have the ability to design complete web applications and websites.</p>
+                <a href="#">Enroll Now</a>
+                <p><i class="fas fa-clock" style="color: #ff6600;"></i> 6 weeks</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Activities and Resources Section -->
+    <section class="info-section">
+        <div class="info-boxes">
+            <div class="info-box">
+                <h2>Key Activities</h2>
+                <ul>
+                    <li>Interactive Lectures</li>
+                    <li>Real-world Projects</li>
+                    <li>Peer Collaboration</li>
+                    <li>Expert Feedback</li>
+                </ul>
+            </div>
+            <div class="info-box">
+                <h2>Key Resources</h2>
+                <ul>
+                    <li>Online Library</li>
+                    <li>Course Materials</li>
+                    <li>Discussion Forums</li>
+                    <li>Mentorship Opportunities</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+
+     <section id="about-us">
+    <section class="about-us">
+        <h2>About Us</h2>
+        <p>We are dedicated to providing high-quality online education and empowering students worldwide with the skills they need for their future careers. Join us to expand your knowledge and unlock your potential!</p>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <footer id="contact-footer">
+        <div class="footer-content">
+            <div>
+                <h3><i class="fas fa-map-marker-alt"></i> Contact Us</h3>
+                <p>Website: www.digilearn.com</p>
+                <p><i class="fas fa-envelope"></i>sarmamukut1345@gmail.com</p>
+                <p><i class="fas fa-phone"></i>  +91 84866 03400</p>
+                <p><i class="fas fa-map-marker-alt"></i> NH 27, Pandu, Guwahati, 781012, Assam, India</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3><i class="fas fa-share-alt"></i> Follow Us</h3>
+            <div class="footer-socials">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Digilearn Platform. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+      const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+
+document.getElementById('nextBtn').addEventListener('click', () => {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+});
+
+    </script>
+</body>
+</html>
